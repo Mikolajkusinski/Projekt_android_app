@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Przykładowy obraz (SVG)",
+    "type": "2d",
+    "path": "images/2d/face.png",
+    "format": "png",
+    "createdAt": "2025-01-01"
+  },
+  {
+    "name": "Model 3D (GLB)",
+    "type": "3d",
+    "path": "models/3d/Domek.glb",
+    "format": "glb",
+    "createdAt": "2025-01-01"
+  }
+]
