@@ -1,16 +1,44 @@
 [
   {
-    "name": "Przykładowy obraz (SVG)",
+    "name": "Przykładowy obraz (PNG)",
     "type": "2d",
     "path": "images/2d/face.png",
     "format": "png",
-    "createdAt": "2025-01-01"
+    "createdAt": "2026-01-01"
+  },
+  {
+    "name": "Latarnia i brzeg (PNG)",
+    "type": "2d",
+    "path": "images/2d/latarnia i brzeg.png",
+    "format": "png",
+    "createdAt": "2026-01-12"
+  },
+  {
+    "name": "Piramida (PNG)",
+    "type": "2d",
+    "path": "images/2d/Piramida.png",
+    "format": "png",
+    "createdAt": "2026-01-12"
   },
   {
     "name": "Model 3D (GLB)",
     "type": "3d",
     "path": "models/3d/Domek.glb",
     "format": "glb",
-    "createdAt": "2025-01-01"
+    "createdAt": "2026-01-01"
+  },
+  {
+    "name": "Donut 3D (GLB)",
+    "type": "3d",
+    "path": "models/3d/donut.glb",
+    "format": "glb",
+    "createdAt": "2026-01-12"
+  },
+  {
+    "name": "Latarnia (GLB)",
+    "type": "3d",
+    "path": "models/3d/latarnia.glb",
+    "format": "glb",
+    "createdAt": "2026-01-12"
   }
 ]
