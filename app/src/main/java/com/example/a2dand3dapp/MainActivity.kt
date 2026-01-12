@@ -58,6 +58,10 @@ import io.github.sceneview.node.CameraNode
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
 
+import androidx.compose.foundation.gestures.rememberTransformableState
+import androidx.compose.foundation.gestures.transformable
+import androidx.compose.ui.graphics.graphicsLayer
+
 enum class ModelType { MODEL_2D, MODEL_3D }
 
 data class ModelItem(
@@ -188,11 +192,8 @@ private fun ModelViewer(item: ModelItem, modifier: Modifier = Modifier) {
         if (item.type == ModelType.MODEL_3D) {
             ThreeDViewerNative(url = item.url, modifier = Modifier.weight(1f))
         } else {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(item.url)
-                    .crossfade(true)
-                    .build(),
+            ZoomableImage(
+                imageUrl = item.url,
                 contentDescription = item.name,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -209,6 +210,39 @@ private fun ModelViewer(item: ModelItem, modifier: Modifier = Modifier) {
             Text(text = "Źródło: ${item.url}")
         }
     }
+}
+
+@Composable
+fun ZoomableImage(
+    imageUrl: String,
+    contentDescription: String?,
+    modifier: Modifier = Modifier
+) {
+    var scale by remember { mutableStateOf(1f) }
+    var offsetX by remember { mutableStateOf(0f) }
+    var offsetY by remember { mutableStateOf(0f) }
+
+    val state = rememberTransformableState { zoomChange, offsetChange, _ ->
+        scale = (scale * zoomChange).coerceIn(1f, 5f)
+        offsetX += offsetChange.x
+        offsetY += offsetChange.y
+    }
+
+    AsyncImage(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(imageUrl)
+            .crossfade(true)
+            .build(),
+        contentDescription = contentDescription,
+        modifier = modifier
+            .graphicsLayer(
+                scaleX = scale,
+                scaleY = scale,
+                translationX = offsetX,
+                translationY = offsetY
+            )
+            .transformable(state)
+    )
 }
 
 @Composable
